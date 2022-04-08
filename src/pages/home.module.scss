@@ -1,1 +1,91 @@
-// TODO
+.headerContainer {
+  max-width: 1120px;
+  padding: 41px 0;
+  margin: 0 auto;
+}
+
+.headerContent {
+  height: 6.5625rem;
+
+  img {
+    max-width: 14.91375rem;
+  }
+}
+
+.Container {
+  max-width: 1120px;
+  margin: 0 auto 5rem;
+}
+
+.posts {
+  max-width: 721px;
+  padding: 0px 1.3125rem;
+  margin: 0 auto;
+
+  a {
+    display: block;
+
+    & + a {
+      margin-top: 3rem;
+    }
+
+    strong {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03125rem;
+
+      transition: color 0.2s;
+    }
+
+    p {
+      margin-top: 0.5rem;
+
+      font-size: 1.125rem;
+      line-height: 1.36125rem;
+
+      color: var(--gray-100);
+    }
+
+    .info {
+      margin-top: 1.5rem;
+
+      display: flex;
+      align-items: center;
+
+      span {
+        display: flex;
+        align-items: center;
+
+        font-size: 0.875rem;
+
+        color: var(--gray-300);
+
+        & + span {
+          margin-left: 1.5rem;
+        }
+
+        svg {
+          font-size: 1.25rem;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+
+    &:hover {
+      strong {
+        color: var(--pink-900);
+      }
+    }
+  }
+
+  button {
+    margin-top: 4rem;
+
+    background: none;
+    border: none;
+
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--pink-900);
+  }
+}

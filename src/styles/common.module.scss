@@ -1,1 +1,12 @@
-// TODO
+.Container {
+  max-width: 1120px;
+}
+
+.Content {
+  max-width: 721px;
+  padding: 0px 1.3125rem;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+}
