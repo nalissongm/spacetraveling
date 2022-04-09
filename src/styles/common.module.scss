@@ -1,12 +1,30 @@
-.Container {
-  max-width: 1120px;
-}
-
 .Content {
   max-width: 721px;
   padding: 0px 1.3125rem;
   margin: 0 auto;
+}
+
+.info {
+  margin-top: 1.5rem;
 
   display: flex;
   align-items: center;
+
+  span {
+    display: flex;
+    align-items: center;
+
+    font-size: 0.875rem;
+
+    color: var(--gray-300);
+
+    & + span {
+      margin-left: 1.5rem;
+    }
+
+    svg {
+      font-size: 1.25rem;
+      margin-right: 0.5rem;
+    }
+  }
 }

@@ -6,15 +6,14 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import Link from 'next/link';
 
-// import { useEffect, useState } from 'react';
-
+import { useState } from 'react';
 import { getPrismicClient } from '../services/prismic';
 
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
 
 interface Post {
-  slug?: string; // Caso dê problema, volvar valor para: uid
+  uid?: string; // Caso dê problema, volvar valor para: uid
   first_publication_date: string | null;
   data: {
     title: string;
@@ -33,7 +32,34 @@ interface HomeProps {
 }
 
 export default function Home({ postsPagination }: HomeProps): JSX.Element {
-  console.log(postsPagination);
+  const [postPagination, setPostPagination] =
+    useState<PostPagination>(postsPagination);
+  const { next_page, results } = postPagination;
+
+  async function newPost(): Promise<void> {
+    const response = await fetch(next_page);
+    const dataJson = await response.json();
+
+    const newPosts = dataJson.results.map(post => {
+      return {
+        uid: post.uid,
+        first_publication_date: post.first_publication_date,
+        data: {
+          title: post.data.title,
+          subtitle: post.data.subtitle,
+          author: post.data.author,
+        },
+      };
+    });
+
+    setPostPagination(posts => {
+      return {
+        next_page: dataJson.next_page,
+        results: [...posts.results, ...newPosts],
+      };
+    });
+  }
+
   return (
     <>
       <header className={`${styles.headerContainer}`}>
@@ -47,15 +73,23 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
       </header>
       <main className={`${styles.Container}`}>
         <div className={styles.posts}>
-          {postsPagination?.results.map(post => (
-            <Link href={`/post/${post.slug}`} key={post.slug}>
+          {results.map(post => (
+            <Link href={`/post/${post.uid}`} key={post.uid}>
               <a>
                 <strong>{post.data.title}</strong>
                 <p>{post.data.subtitle}</p>
-                <div className={styles.info}>
+                <div className={commonStyles.info}>
                   <span className={styles.createdAt}>
                     <FiCalendar />
-                    <time>{post.first_publication_date}</time>
+                    <time>
+                      {format(
+                        new Date(post.first_publication_date),
+                        'dd LLL yyy',
+                        {
+                          locale: ptBR,
+                        }
+                      )}
+                    </time>
                   </span>
                   <span className={styles.author}>
                     <FiUser />
@@ -65,8 +99,10 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
               </a>
             </Link>
           ))}
-          {!!postsPagination?.next_page && (
-            <button type="button">Carregar mais posts</button>
+          {!!next_page && (
+            <button type="button" onClick={newPost}>
+              Carregar mais posts
+            </button>
           )}
         </div>
       </main>
@@ -74,26 +110,20 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
   );
 }
 
-export const getStaticProps: GetStaticProps = async contexst => {
+export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
   const postsResponse = await prismic.query(
     [Prismic.predicates.at('document.type', 'posts')],
     {
       fetch: ['posts.title', 'posts.subtitle', 'posts.author'],
-      pageSize: 100,
+      pageSize: 1,
     }
   );
 
   const posts = postsResponse.results.map(post => {
     return {
-      slug: post.uid,
-      first_publication_date: format(
-        new Date(post.first_publication_date),
-        "'Hoje é' eeee",
-        {
-          locale: ptBR,
-        }
-      ),
+      uid: post.uid,
+      first_publication_date: post.first_publication_date,
       data: {
         title: post.data.title,
         subtitle: post.data.subtitle,
@@ -102,14 +132,14 @@ export const getStaticProps: GetStaticProps = async contexst => {
     };
   });
 
-  const postPagination = {
+  const postsPagination = {
     next_page: postsResponse.next_page,
     results: posts,
   };
 
   return {
     props: {
-      postPagination,
+      postsPagination,
     },
   };
 };

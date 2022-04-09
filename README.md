@@ -10,8 +10,8 @@
 
 ### pages/\_index.tsx
 
-- [] Deve renderizar todos os posts da paginação.
-- [] Exibir o botão `Carregar mais posts`, caso existam mais posts a ser carregados.
+- [x] Deve renderizar todos os posts da paginação.
+- [x] Exibir o botão `Carregar mais posts`, caso existam mais posts a ser carregados.
 
   > **Observação**:
   > o valor `next_page` retornado pela Prismic não pode ser `null`. Caso contrário, o botão não deve ser renderizado.
@@ -19,10 +19,10 @@
 - [x] A logo `spacetraveling` deve ser exportada do Figma e salva na pasta `public`.
 - [x] A logo deve ter o `alt` com o valor `logo` para que o teste possa encontrá-la corretamente.
 
-- [] Ao clicar no post, é preciso navegar para a pagina do post com a url `/post/slugDoPost`.
-- [] Url do post deve ser referente ao valor `slug` retornado pelo Prismic.
+- [x] Ao clicar no post, é preciso navegar para a pagina do post com a url `/post/slugDoPost`.
+- [x] Url do post deve ser referente ao valor `slug` retornado pelo Prismic.
 
-- [] A página deve ser gerada estaticamente utilizando `getStaticProps` para buscar os dados do Prismic e popular a sua prop `postsPagination`.
+- [x] A página deve ser gerada estaticamente utilizando `getStaticProps` para buscar os dados do Prismic e popular a sua prop `postsPagination`.
 
   > **Atenção**: Nesse método é obrigatório utilizar o [query](https://prismic.io/docs/technologies/query-a-single-type-document-javascript) do Prismic.
 
@@ -32,7 +32,7 @@
 
 ### pages/post/[slug].tsx
 
-- [] O arquivo deve renderizar toda a informação do post e o component `Header`.
+- [x] O arquivo deve renderizar toda a informação do post e o component `Header`.
 
 - [] O tempo estimado de leitura deve ser calculado manualmente por você:
   1. Calcular todas as palavras dentro do texto do seu post.
@@ -87,36 +87,36 @@
 
 ### components/Header/index.tsx
 
-- [] **should be able to render logo**
+- [x] **should be able to render logo**
 
   > Para que esse teste passe você deve renderizar a logo do site com o valor do `alt` sendo `logo`
 
-- [] **should be able to navigate to home page after a click**
+- [x] **should be able to navigate to home page after a click**
 
   > Para que esse teste passe você deve navegar para a página principal após o click na logo.
 
 ### pages/Home/index.tsx
 
-- [] **should be able to return prismic posts documents using getStaticProps**
+- [x] **should be able to return prismic posts documents using getStaticProps**
 
   > Para que esse teste passe você deve retornar do `getStaticProps` os dados do Prismic de acordo com as `interfaces` já disponibilizada no template. Obrigatório utilizar o método
   > `query` do Prismic.
 
-- [] **should be able to render posts documents info**
+- [x] **should be able to render posts documents info**
 
   > Para que esse teste passe você deve renderizar em tela a listagem de posts com as informações de título, subtítulo, data de criação (já formatada) e autor do post.
 
-- [] **should be able to navigate to post page after a click**
+- [x] **should be able to navigate to post page after a click**
 
   > Para que esse teste passe você deve navegar para a página do post clicado seguindo o padrão `/post/slugDoPost` onde `slugDoPost` é o valor `slug` de cada post retornado pel
   > o Prismic
 
-- [] **should be able to load more posts if available**
+- [x] **should be able to load more posts if available**
 
   > Para que esse teste passe você deve renderizar em tela o botão com o valor `Carregar mais posts` caso o `next_page` indique que existam mais posts a serem exibidos (link).
   > Ao clicar no botão, você carregar os posts da nova paginação e concatenar com os existentes em tela. Obrigatório utilizar o `fetch`.
 
-- [] **should not be able to load more posts if not available**
+- [x] **should not be able to load more posts if not available**
 
   > Para que esse teste passe você não deve renderizar em tela o botão `Carregar mais posts` caso o `next_page` indique que não há mais posts a serem carregados (`null`).
 
