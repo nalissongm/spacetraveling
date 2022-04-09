@@ -28,13 +28,14 @@
 
 ### pages/home.module.scss
 
-- [] Estilizar pagina principal.
+- [x] Estilizar pagina principal.
 
 ### pages/post/[slug].tsx
 
 - [x] O arquivo deve renderizar toda a informação do post e o component `Header`.
 
-- [] O tempo estimado de leitura deve ser calculado manualmente por você:
+- [x] O tempo estimado de leitura deve ser calculado manualmente por você:
+
   1. Calcular todas as palavras dentro do texto do seu post.
   2. Dividir pela média de palavras que um ser humano lê por minuto.
   3. Arredondar para cima.
@@ -42,27 +43,27 @@
 > Para esse desafio, utilize que o ser humano leia, em média, 200 palavras por minuto.
 > Então se o seu texto possuir 805 palavras, você irá dividir por 200 e arredondar o resultado para cima, chegando assim no valor de 5 minutos estimados para leitura do post.
 
-- [] Você deve iterar no array da propriedade `content` para buscar a quantidade de palavras de cada seção (`heading` e `body`).
+- [x] Você deve iterar no array da propriedade `content` para buscar a quantidade de palavras de cada seção (`heading` e `body`).
 
 > Para calcular o tempo estimado de leitura, sugerimos utilizar o método `reduce` para iterar o array `content`, o método `PrismicDOM.RichText.asText` para obter todo o texto do `body` e utilizar o método `split` com uma `regex` para gerar um array de palavras.
 
-- [] A logo `spacetraveling` deve ser exportada do Figma e salva na pasta `public`.
-- [] A logo deve ter o `alt` com o valor `logo` para que o teste possa encontrá-la corretamente.
+- [x] A logo `spacetraveling` deve ser exportada do Figma e salva na pasta `public`.
+- [x] A logo deve ter o `alt` com o valor `logo` para que o teste possa encontrá-la corretamente.
 
-- [] A página deve ser gerada estaticamente utilizando o `getStaticProps` para buscar os dados do Prismic e popular a sua prop `post`.
+- [x] A página deve ser gerada estaticamente utilizando o `getStaticProps` para buscar os dados do Prismic e popular a sua prop `post`.
 
   > Nesse método é obrigatório utilizar o [getByUID](https://prismic.io/docs/technologies/query-helper-functions-javascript#getbyuid) do Prismic.
 
-- [] Você deve utilizar o `getStaticPaths` para gerar as páginas estáticas de alguns posts.
-- [] Você deve setar o `fallback` como `true` para que o restante seja gerado no momento da requisição.
+- [x] Você deve utilizar o `getStaticPaths` para gerar as páginas estáticas de alguns posts.
+- [x] Você deve setar o `fallback` como `true` para que o restante seja gerado no momento da requisição.
 
   > Nesse método é obrigatório utilizar o [query](https://prismic.io/docs/technologies/query-a-single-type-document-javascript) do Prismic.
 
-- [] Nos casos que cairem no `fallback`, é **obrigatório** que você renderize pelo menos um texto na tela dizendo `Carregando...` para que o teste consiga verificar esses casos corretamente.
+- [x] Nos casos que cairem no `fallback`, é **obrigatório** que você renderize pelo menos um texto na tela dizendo `Carregando...` para que o teste consiga verificar esses casos corretamente.
 
 ### posts/post.module.scss
 
-- [] Estilizar a página de post.
+- [x] Estilizar a página de post.
 
 ### components/Header/index.tsx
 
@@ -81,7 +82,7 @@
 
 ### styles/common.module.scss
 
-- [] Estilização comum entre os arquivos das suas páginas (ex.: largura máxima).
+- [x] Estilização comum entre os arquivos das suas páginas (ex.: largura máxima).
 
 ## Testes
 
@@ -122,18 +123,18 @@
 
 ### pages/post/[slug].tsx
 
-- [] **should be able to return prismic posts documents paths using getStaticPaths**
+- [x] **should be able to return prismic posts documents paths using getStaticPaths**
 
   > Para que esse teste passe você deve retornar do `getStaticPaths` os dados do Prismic de acordo com as `interfaces` já disponibilizada no template. Obrigatório utilizar o método `query` do Prismic.
 
-- [] **should be able to return prismic post document using getStaticProps**
+- [x] **should be able to return prismic post document using getStaticProps**
 
   > Para que esse teste passe você deve retornar do `getStaticProps` os dados do Prismic de acordo com as `interfaces` já disponibilizada no template. Obrigatório utilizar o método `getByUID` do Prismic.
 
-- [] **should be able to render post document info**
+- [x] **should be able to render post document info**
 
   > Para que esse teste passe você deve renderizar em tela o título, data de criação (já formatada), autor, tempo estimado de leitura (calculado por você) e conteúdo (`heading` e `body`) do post.
 
-- [] **should be able to render loading message if fallback**
+- [x] **should be able to render loading message if fallback**
 
   > Para que esse teste passe você deve renderizar em tela uma mensagem com o texto `Carregando...` caso o post não tenha sido gerado estaticamente e caia no `fallback`.
