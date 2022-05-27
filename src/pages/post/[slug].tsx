@@ -88,7 +88,12 @@ export default function Post({ post }: PostProps): JSX.Element {
             {post.data.content.map(content => (
               <div className={styles.post_content} key={content.heading}>
                 {/* eslint-disable-next-line react/no-danger */}
-                <h1>{content.heading}</h1>
+                <h2
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{
+                    __html: RichText.asText(content.heading),
+                  }}
+                />
                 <p
                   // eslint-disable-next-line react/no-danger
                   dangerouslySetInnerHTML={{
