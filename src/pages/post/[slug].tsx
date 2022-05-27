@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
 import Prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
@@ -57,6 +58,9 @@ export default function Post({ post }: PostProps): JSX.Element {
 
   return (
     <>
+      <Head>
+        <title>{post.data.title}</title>
+      </Head>
       <Header />
       <main className={styles.Container}>
         <div className={styles.bannerWrapper}>

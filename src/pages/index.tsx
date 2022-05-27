@@ -7,6 +7,7 @@ import { FiCalendar, FiUser } from 'react-icons/fi';
 import Link from 'next/link';
 
 import { useState } from 'react';
+import Head from 'next/head';
 import { getPrismicClient } from '../services/prismic';
 
 import commonStyles from '../styles/common.module.scss';
@@ -62,6 +63,9 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
 
   return (
     <>
+      <Head>
+        <title>Spacetraveling</title>
+      </Head>
       <header className={`${styles.headerContainer}`}>
         <div className={`${styles.headerContent} ${commonStyles.Content}`}>
           <Link href="/">
