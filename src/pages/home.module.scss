@@ -5,7 +5,7 @@
 }
 
 .headerContent {
-  height: 6.5625rem;
+  height: 4rem;
 
   img {
     max-width: 14.91375rem;
@@ -51,6 +51,20 @@
         color: var(--pink-900);
       }
     }
+  }
+
+  a:not(:last-of-type)::after {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+    height: 1px;
+
+    margin-top: 30px;
+
+    opacity: 0.15;
+    background: #ffffff;
   }
 
   button {
